@@ -1,0 +1,54 @@
+body {
+    font-size: 20px;
+}
+
+header {
+    text-align: center;
+}
+
+#errors {
+    margin-bottom: 0;
+}
+
+#login {
+    border: 1px solid #aaa;
+    margin: auto;
+    padding: 1em;
+    width: 300px;
+}
+
+.form_button {
+    
+}
+
+.form_button button {
+    background-color: #0074d9;
+    border: none;
+    box-shadow: 0 5px 0 #004D94;
+    color: #ddd;
+    padding: 0.5em 0;
+    width: 100%;
+}
+
+.form_button button:active {
+    margin-bottom: -0.1em;
+    margin-top: 0.1em;
+}
+
+.form_input {
+    margin: 0 0 0.7em;
+}
+
+.form_input input {
+    border: 1px solid #aaa;
+    width: 100%;
+}
+
+.form_input input:focus {
+    background-color: #ddd;
+}
+
+.form_input label {
+    display: inline-block;
+    margin-bottom: 0.2em;
+}
