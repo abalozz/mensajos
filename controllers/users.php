@@ -23,7 +23,8 @@ class UsersController extends Controller {
     public function follow()
     {
         $user = User::where(['id' => $_GET['id']], 1);
-        Auth::user()->follow($user);
+        Auth::user()->toggle_follow($user);
+        Auth::user()->save();
 
         header('Location:?page=users&action=show&id=' . $_GET['id']);
     }
