@@ -1,0 +1,32 @@
+nav {
+    background-color: #222;
+    padding: 0 1em;
+}
+
+nav a {
+    color: #ddd;
+    display: block;
+    padding: 0.2em;
+    text-align: center;
+    text-decoration: none;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.max-nav-width {
+    margin: auto;
+    max-width: 690px;
+}
+
+@media screen and (min-width: 420px) {
+    nav a {
+        display: inline-block;
+    }
+
+    .nav-right {
+        float: right;
+    }
+}

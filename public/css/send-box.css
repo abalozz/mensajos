@@ -1,0 +1,42 @@
+#send-mensajo-box button {
+    background: #0074d9;
+    border: none;
+    border-radius: 0;
+    color: #ddd;
+    display: block;
+    height: 1.5em;
+    width: 100%;
+    -webkit-transition: bottom 0.3s;
+    -moz-transition: bottom 0.3s;
+    -ms-transition: bottom 0.3s;
+    -o-transition: bottom 0.3s;
+    transition: bottom 0.3s;
+}
+
+#send-mensajo-box button:hover {
+    background-color: #1084e9;
+    color: #fff;
+}
+
+#send-mensajo-box textarea {
+    border-color: #0074d9;
+    border-style: solid;
+    border-width: 0 1px;
+    border-radius: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 1.5em;
+    resize: vertical;
+    -webkit-transition: height 0.3s;
+    -moz-transition: height 0.3s;
+    -ms-transition: height 0.3s;
+    -o-transition: height 0.3s;
+    transition: height 0.3s;
+    width: 100%;
+}
+
+#send-mensajo-box textarea:focus {
+    background-color: #ffe5ce;
+    height: 6em;
+}

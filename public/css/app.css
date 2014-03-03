@@ -1,0 +1,31 @@
+a {
+    color: #0074d9;
+}
+
+a:hover {
+    color: #32A0FF;
+}
+
+body {
+    background: #fff;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+}
+
+h2 {
+    margin-bottom: 0;
+    text-align: center;
+}
+
+@media screen and (min-width: 520px) {
+    #wrap {
+        margin: auto;
+        width: 520px;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    #wrap {
+        width: 696px;
+    }
+}

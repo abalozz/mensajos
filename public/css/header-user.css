@@ -1,0 +1,111 @@
+#user-media {
+    position: relative;
+}
+
+#user-media .name {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-top: 2px solid #333;
+    bottom: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 1em;
+    left: 0;
+    margin: 0;
+    padding: 0 0 0.2em 102px;
+    position: absolute;
+    width: 100%;
+}
+
+#user-media .user-header-img {
+    display: block;
+    width: 100%;
+}
+
+#user-media .user-profile-img {
+    border-radius: 0 6px 0 0;
+    border-right: 2px solid #333;
+    border-top: 2px solid #333;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    width: 96px;
+    z-index: 9;
+}
+
+#user-media .username {
+    color: #3a3a3a;
+    font-size: 0.8em;
+}
+
+
+#user-stats {
+    border-bottom: 1px solid #aaa;
+    border-top: 2px solid #333;
+}
+
+#user-stats .count, #user-stats .text {
+    display: block;
+    text-align: center;
+}
+
+#user-stats .stat {
+    display: inline-block;
+    width: 33%;
+}
+
+#user-stats .stat:nth-child(2) {
+    border-color: #aaa;
+    border-style: solid;
+    border-width: 0 1px;
+}
+
+@media screen and (min-width: 420px) {
+    #user-media .name {
+        padding: 0 0 0.2em 134px;
+    }
+
+    #user-media .user-profile-img {
+        width: 128px;
+    }
+}
+
+@media screen and (min-width: 520px) {
+    #user-media {
+        border-color: #333;
+        border-style: solid;
+        border-width: 0 2px;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    header {
+        border-color: #333;
+        border-style: solid;
+        border-width: 0 2px 2px;
+    }
+
+    #user-media {
+        border-left: none;
+        display: inline-block;
+        vertical-align: top;
+        width: 520px;
+    }
+
+    #user-stats {
+        border: none;
+        float: right;
+        width: 170px;
+    }
+
+    #user-stats .stat {
+        display: block;
+        font-size: 1.6em;
+        height: 86px;
+        width: 100%;
+    }
+
+    #user-stats .stat:nth-child(2) {
+        border-width: 1px 0;
+    }
+}

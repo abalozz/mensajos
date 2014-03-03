@@ -1,0 +1,31 @@
+#messages {
+    background: #fff;
+    margin-top: 0.5em;
+}
+
+.message {
+    border-top: 1px solid #333;
+    font-size: 0.8em;
+    min-height: 64px;
+}
+
+.message p {
+    margin: 0;
+}
+
+.message .profile-img {
+    float: left;
+    margin-right: 0.2em;
+    width: 64px;
+}
+
+@media screen and (min-width: 700px) {
+    .message {
+        font-size: 1em;
+        min-height: 96px;
+    }
+
+    .message .profile-img {
+        width: 96px;
+    }
+}
