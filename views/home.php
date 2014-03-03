@@ -11,7 +11,7 @@
     <div id="user-stats">
         <a href="?page=users&amp;action=show&amp;id=<?php echo $user->get_id() ?>" id="mensajos" class="stat">
             <span class="text">Mensajos</span>
-            <span class="count">0</span>
+            <span class="count"><?php echo $user->get_number_of_messages() ?></span>
         </a
         ><a href="?page=users&amp;action=followers&amp;id=<?php echo $user->get_id() ?>" id="followers" class="stat">
             <span class="text">Seguidores</span>

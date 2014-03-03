@@ -8,6 +8,8 @@ class User extends Model {
     private $email;
     private $password;
 
+    private $number_of_messages = 0;
+
     private $followers = [];
     private $followings = [];
     private $number_of_followers;
@@ -37,6 +39,9 @@ class User extends Model {
             foreach ($followers as $follower) {
                 $this->followers[] = new User($follower);
             }
+
+            $number_of_messages = DB::query('SELECT COUNT(id) count FROM timeline WHERE user_id = ?', [$this->id]);
+            $this->number_of_messages = $number_of_messages[0]['count'];
         }
     }
 
@@ -68,6 +73,11 @@ class User extends Model {
     public function get_number_of_followers()
     {
         return $this->number_of_followers;
+    }
+
+    public function get_number_of_messages()
+    {
+        return $this->number_of_messages;
     }
 
     public function set_username($value)
