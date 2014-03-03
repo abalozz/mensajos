@@ -13,6 +13,8 @@ class Message extends Model {
     private $content;
     private $created_at;
 
+    private $username;
+
     public function __construct($data, $exists = false)
     {
         $this->user_id = $data['user_id'];
@@ -20,6 +22,8 @@ class Message extends Model {
         if (isset($data['created_at'])) {
             $this->created_at = $data['created_at'];
         }
+
+        $this->username = $data['username'];
 
         parent::__construct($data, $exists);
     }
@@ -37,6 +41,11 @@ class Message extends Model {
     public function get_created_at()
     {
         return $this->created_at;
+    }
+
+    public function get_username()
+    {
+        return $this->username;
     }
 
     public function set_user_id($user_id)
@@ -83,8 +92,10 @@ class Message extends Model {
 
     static function timeline($user_id)
     {
-        $messages = DB::query('SELECT m.id, m.user_id, m.content, m.created_at FROM follows f, timeline t, messages m
-            WHERE f.user_id = ? AND f.followed_id = t.user_id AND (t.message_id = m.id OR m.user_id = f.user_id)
+        $messages = DB::query('SELECT u.username, m.id, m.user_id, m.content, m.created_at
+            FROM follows f, timeline t, messages m, users u
+            WHERE f.user_id = ? AND f.followed_id = t.user_id
+            AND (t.message_id = m.id OR m.user_id = f.user_id) AND m.user_id = u.id
             ORDER BY m.id DESC', [$user_id]);
 
         foreach ($messages as $key => $message) {

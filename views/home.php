@@ -13,7 +13,7 @@
         <?php foreach ($messages as $message): ?>
             <article>
                 <p>
-                    <?php echo $message->get_content() ?>
+                    <span><?php echo $message->get_username() ?>:</span> <?php echo $message->get_content() ?>
                 </p>
             </article>
         <?php endforeach; ?>
