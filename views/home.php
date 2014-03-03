@@ -17,7 +17,7 @@
             <span class="text">Seguidores</span>
             <span class="count"><?php echo $user->get_number_of_followers() ?></span>
         </a
-        ><a href="?page=users&amp;action=following&amp;id=<?php echo $user->get_id() ?>" id="following" class="stat">
+        ><a href="?page=users&amp;action=followings&amp;id=<?php echo $user->get_id() ?>" id="following" class="stat">
             <span class="text">Siguiendo</span>
             <span class="count"><?php echo $user->get_number_of_followings() ?></span>
         </a>

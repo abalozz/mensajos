@@ -31,4 +31,22 @@ class UsersController extends Controller {
         header('Location:?page=users&action=show&id=' . $_GET['id']);
     }
 
+    public function followers()
+    {
+        $followers = Auth::user()->get_followers();
+
+        $view = View::make('users/list');
+        $view->with('users', $followers);
+        return $view;
+    }
+
+    public function followings()
+    {
+        $followings = Auth::user()->get_followings();
+
+        $view = View::make('users/list');
+        $view->with('users', $followings);
+        return $view;
+    }
+
 }
