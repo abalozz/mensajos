@@ -25,7 +25,7 @@ class DB {
 
     static function lastInsertId($name = null)
     {
-        return DB::lastInsertId($name);
+        return self::$db->lastInsertId($name);
     }
 
 }

@@ -1,18 +1,25 @@
 <?php
 
+/**
+ * Tipo de mensaje (type):
+ *   0 - mensaje normal.
+ *   1 - mensaje reenviado.
+ */
 class Message extends Model {
 
     static $table = 'messages';
 
     private $user_id;
-    private $text;
+    private $content;
     private $created_at;
 
-    public function __construct($data, $exists)
+    public function __construct($data, $exists = false)
     {
         $this->user_id = $data['user_id'];
-        $this->text = $data['text'];
-        $this->created_at = $data['created_at'];
+        $this->content = $data['content'];
+        if (isset($data['created_at'])) {
+            $this->created_at = $data['created_at'];
+        }
 
         parent::__construct($data, $exists);
     }
@@ -22,9 +29,9 @@ class Message extends Model {
         return $this->user_id;
     }
 
-    public function get_text()
+    public function get_content()
     {
-        return $this->text;
+        return $this->content;
     }
 
     public function get_created_at()
@@ -37,9 +44,9 @@ class Message extends Model {
         $this->user_id = $user_id;
     }
 
-    public function set_text($text)
+    public function set_content($content)
     {
-        $this->text = $text;
+        $this->content = $content;
     }
 
     public function set_created_at($created_at)
@@ -49,7 +56,7 @@ class Message extends Model {
 
     public function is_valid()
     {
-        if ($this->user_id && $this->text && $this->created_at) {
+        if (is_numeric($this->user_id) && $this->content) {
             return true;
         }
         return false;
@@ -58,16 +65,19 @@ class Message extends Model {
     public function save()
     {
         if ($this->exists) {
-            DB::query('UPDATE ' . self::$table . ' SET user_id = ?, text = ?, created_at = ? WHERE id = ?;', [
-                $this->user_id, $this->text, $this->created_at, $this->id
+            DB::query('UPDATE ' . self::$table . ' SET user_id = ?, content = ? WHERE id = ?;', [
+                $this->user_id, $this->content, $this->id
                 ]);
         } else {
-            DB::query('INSERT INTO ' . self::$table . ' (id, user_id, text, created_at) VALUES (null, ?, ?, ?);', [
-                $this->user_id, $this->text, $this->created_at
+            DB::query('INSERT INTO ' . self::$table . ' (id, user_id, content, created_at) VALUES (null, ?, ?, null);', [
+                $this->user_id, $this->content
                 ]);
-        }
+            $this->id = DB::lastInsertId();
 
-        parent::save();
+            DB::query('INSERT INTO timeline (id, user_id, message_id, type) VALUES (null, ?, ?, ?)', [$this->user_id, $this->id, 0]);
+
+            $this->exists = true;
+        }
     }
 
 }
