@@ -2,11 +2,11 @@
 
 <header>
     <div id="user-media">
-        <img src="https://pbs.twimg.com/profile_banners/437581554/1393030827/web"
-            alt="Cabecera" class="user-header-img">
-        <img src="https://pbs.twimg.com/profile_images/3614570769/cd11aed39c0c64e296d00c7bd827bb3a.jpeg"
-            alt="<?php echo $user->get_username() ?>" class="user-profile-img">
-        <h1 class="name"><?php echo $user->get_username() ?> <span class="username">(<?php echo $user->get_username() ?>)</span></h1>
+        <img src="<?php echo $user->get_header_image() ?>"
+            alt="Cabecera de <?php echo $user->get_name() ?>" class="user-header-img">
+        <img src="<?php echo $user->get_profile_image() ?>"
+            alt="<?php echo $user->get_name() ?>" class="user-profile-img">
+        <h1 class="name"><?php echo $user->get_name() ?> <span class="username">(<?php echo $user->get_username() ?>)</span></h1>
     </div>
     <div id="user-stats">
         <a href="?page=users&amp;action=show&amp;id=<?php echo $user->get_id() ?>" id="mensajos" class="stat">
@@ -35,9 +35,9 @@
     <?php if (count($messages)): ?>
         <?php foreach ($messages as $message): ?>
             <article class="message">
-                <img src="https://pbs.twimg.com/profile_images/3614570769/cd11aed39c0c64e296d00c7bd827bb3a.jpeg"
-                    alt="<?php echo $message->get_username() ?>" class="profile-img">
-                <a href="?page=users&amp;action=show&amp;id=<?php echo $message->get_user_id() ?>"><?php echo $message->get_username() ?></a>
+                <img src="<?php echo $message->get_user()->get_profile_image() ?>"
+                    alt="<?php echo $message->get_user()->get_name() ?>" class="profile-img">
+                <a href="?page=users&amp;action=show&amp;id=<?php echo $message->get_user_id() ?>"><?php echo $message->get_user()->get_name() ?></a>
                 <p>
                     <?php echo $message->get_content() ?>
                 </p>

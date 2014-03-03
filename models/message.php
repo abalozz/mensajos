@@ -13,7 +13,7 @@ class Message extends Model {
     private $content;
     private $created_at;
 
-    private $username;
+    private $user;
 
     public function __construct($data, $exists = false)
     {
@@ -23,7 +23,7 @@ class Message extends Model {
             $this->created_at = $data['created_at'];
         }
 
-        $this->username = $data['username'];
+        $this->user = $data['user'];
 
         parent::__construct($data, $exists);
     }
@@ -43,9 +43,9 @@ class Message extends Model {
         return $this->created_at;
     }
 
-    public function get_username()
+    public function get_user()
     {
-        return $this->username;
+        return $this->user;
     }
 
     public function set_user_id($user_id)
@@ -92,14 +92,28 @@ class Message extends Model {
 
     static function timeline($user_id)
     {
-        $messages = DB::query('SELECT u.username, m.id, m.user_id, m.content, m.created_at
+        $messages = DB::query('SELECT u.username, u.email, u.name, u.profile_image, m.id message_id, m.user_id, m.content, m.created_at
             FROM follows f, timeline t, messages m, users u
             WHERE f.user_id = ? AND f.followed_id = t.user_id
             AND t.message_id = m.id AND m.user_id = u.id
             ORDER BY m.id DESC', [$user_id]);
 
-        foreach ($messages as $key => $message) {
-            $messages[$key] = new Message($message);
+        foreach ($messages as $k => $v) {
+            $user = [
+                'id' => $v['user_id'],
+                'username' => $v['username'],
+                'email' => $v['email'],
+                'name' => $v['name'],
+                'profile_image' => $v['profile_image'],
+            ];
+            $message = [
+                'id' => $v['message_id'],
+                'user_id' => $v['user_id'],
+                'content' => $v['content'],
+                'created_at' => $v['created_at'],
+                'user' => new User($user),
+            ];
+            $messages[$k] = new Message($message);
         }
 
         return $messages;

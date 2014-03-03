@@ -7,6 +7,9 @@ class User extends Model {
     private $username;
     private $email;
     private $password;
+    private $name;
+    private $profile_image = 'img/profile-image-default.jpg';
+    private $header_image = 'img/header-image-default.jpg';
 
     private $number_of_messages = 0;
 
@@ -25,6 +28,17 @@ class User extends Model {
         $this->email = $data['email'];
         if (isset($data['password'])) {
             $this->password = $data['password'];
+        }
+        if (isset($data['name'])) {
+            $this->name = $data['name'];
+        } else {
+            $this->name = $data['username'];
+        }
+        if (isset($data['profile_image'])) {
+            $this->profile_image = $data['profile_image'];
+        }
+        if (isset($data['header_image'])) {
+            $this->header_image = $data['header_image'];
         }
 
         if ($exists) {
@@ -53,6 +67,21 @@ class User extends Model {
     public function get_email()
     {
         return $this->email;
+    }
+
+    public function get_name()
+    {
+        return $this->name;
+    }
+
+    public function get_profile_image()
+    {
+        return $this->profile_image;
+    }
+
+    public function get_header_image()
+    {
+        return $this->header_image;
     }
 
     public function get_followings()
@@ -131,12 +160,13 @@ class User extends Model {
     public function save()
     {
         if ($this->exists) {
-            DB::query('UPDATE ' . self::$table . ' SET username = ?, email = ?, password = ? WHERE id = ?;', [
-                $this->username, $this->email, $this->password, $this->id
+            DB::query('UPDATE ' . self::$table . ' SET username = ?, email = ?,
+                password = ?, name = ?, profile_image = ?, header_image = ? WHERE id = ?;', [
+                $this->username, $this->email, $this->password, $this->name, $this->profile_image, $this->header_image, $this->id
                 ]);
         } else {
-            DB::query('INSERT INTO ' . self::$table . ' (id, username, email, password) VALUES (null, ?, ?, ?);', [
-                $this->username, $this->email, $this->password
+            DB::query('INSERT INTO ' . self::$table . ' (id, username, email, password, name) VALUES (null, ?, ?, ?, ?);', [
+                $this->username, $this->email, $this->password, $this->name
                 ]);
         }
 
