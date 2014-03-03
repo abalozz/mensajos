@@ -95,7 +95,7 @@ class Message extends Model {
         $messages = DB::query('SELECT u.username, m.id, m.user_id, m.content, m.created_at
             FROM follows f, timeline t, messages m, users u
             WHERE f.user_id = ? AND f.followed_id = t.user_id
-            AND (t.message_id = m.id OR m.user_id = f.user_id) AND m.user_id = u.id
+            AND t.message_id = m.id AND m.user_id = u.id
             ORDER BY m.id DESC', [$user_id]);
 
         foreach ($messages as $key => $message) {
