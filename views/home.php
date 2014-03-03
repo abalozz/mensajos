@@ -7,3 +7,17 @@
     <textarea name="mensajo" cols="30" rows="10" placeholder="Envía un nuevo mensajo"></textarea>
     <button>Enviar</button>
 </form>
+
+<div>
+    <?php if (count($messages)): ?>
+        <?php foreach ($messages as $message): ?>
+            <article>
+                <p>
+                    <?php echo $message->get_content() ?>
+                </p>
+            </article>
+        <?php endforeach; ?>
+    <?php else: ?>
+        No tienes mensajes que ver :(
+    <?php endif; ?>
+</div>

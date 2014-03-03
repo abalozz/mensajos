@@ -5,8 +5,11 @@ class HomeController extends Controller {
     public function index()
     {
         if (Auth::check()) {
+            $messages = Message::timeline(Auth::user()->get_id());
+
             $view = View::make('home');
             $view->with('mensajos', 'Mensajos');
+            $view->with('messages', $messages);
             $view->with('user', Auth::user());
         } else {
             $view = View::make('login');
