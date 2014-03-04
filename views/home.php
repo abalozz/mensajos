@@ -41,6 +41,17 @@
                 <p>
                     <?php echo $message->get_content() ?>
                 </p>
+                <p>
+                    <?php if (!$message->is_from(Auth::user())): ?>
+                        <a href="?page=messages&amp;action=forward&amp;id=<?php echo $message->get_id() ?>">
+                            <?php if ($message->is_forwarded(Auth::user())): ?>
+                                Reenviado
+                            <?php else: ?>
+                                Reenviar
+                            <?php endif; ?>
+                        </a>
+                    <?php endif; ?>
+                </p>
             </article>
         <?php endforeach; ?>
     <?php else: ?>

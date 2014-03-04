@@ -71,6 +71,26 @@ class Message extends Model {
         return false;
     }
 
+    public function is_forwarded($user)
+    {
+        $tl = DB::query('SELECT id FROM timeline WHERE user_id = ? AND message_id = ? LIMIT 1', [$user->get_id(), $this->id]);
+        return (isset($tl[0])) ? $tl[0]['id'] : false;
+    }
+
+    public function forward($user)
+    {
+        if ($id = $this->is_forwarded($user)) {
+            DB::query('DELETE FROM timeline WHERE id = ? ', [$id]);
+        } else {
+            DB::query('INSERT INTO timeline (id, user_id, message_id, type) VALUES (null, ?, ?, 1)', [$user->get_id(), $this->id]);
+        }
+    }
+
+    public function is_from($user)
+    {
+        return $user->get_id() == $this->user_id;
+    }
+
     public function save()
     {
         if ($this->exists) {
@@ -96,7 +116,7 @@ class Message extends Model {
             FROM follows f, timeline t, messages m, users u
             WHERE f.user_id = ? AND f.followed_id = t.user_id
             AND t.message_id = m.id AND m.user_id = u.id
-            ORDER BY m.id DESC', [$user_id]);
+            ORDER BY t.id DESC', [$user_id]);
 
         foreach ($messages as $k => $v) {
             $user = [

@@ -2,7 +2,7 @@
 
 class MessagesController extends Controller {
 
-    static $require_auth = ['store'];
+    static $require_auth = ['store', 'forward'];
     
     public function store()
     {
@@ -10,6 +10,14 @@ class MessagesController extends Controller {
             'user_id' => Auth::user()->get_id(),
             'content' => $_POST['mensajo'],
             ]);
+
+        header('Location:./');
+    }
+
+    public function forward()
+    {
+        $message = Message::where(['id' => $_GET['id']], 1);
+        $message->forward(Auth::user());
 
         header('Location:./');
     }
