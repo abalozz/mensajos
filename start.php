@@ -42,6 +42,6 @@ if (is_file($controller_file)) {
     $action = (isset($_GET['action']) && $_GET['action'] != '') ? strtolower($_GET['action']) : 'index';
     // Crea el objeto.
     new $class_name($action);
-} else {
-    error_404();
 }
+
+error_404();

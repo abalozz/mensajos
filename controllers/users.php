@@ -1,6 +1,8 @@
 <?php
 
 class UsersController extends Controller {
+
+    static $require_auth = ['follow', 'followers', 'followings'];
     
     public function index()
     {
@@ -33,7 +35,8 @@ class UsersController extends Controller {
 
     public function followers()
     {
-        $followers = Auth::user()->get_followers();
+        $user = User::where(['id' => $_GET['id']], 1);
+        $followers = $user->get_followers();
 
         $view = View::make('users/list');
         $view->with('users', $followers);
@@ -42,7 +45,8 @@ class UsersController extends Controller {
 
     public function followings()
     {
-        $followings = Auth::user()->get_followings();
+        $user = User::where(['id' => $_GET['id']], 1);
+        $followings = $user->get_followings();
 
         $view = View::make('users/list');
         $view->with('users', $followings);

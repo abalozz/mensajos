@@ -1,6 +1,8 @@
 <?php
 
 class MessagesController extends Controller {
+
+    static $require_auth = ['store'];
     
     public function store()
     {
