@@ -17,7 +17,7 @@ class Message extends Model {
 
     public function __construct($data, $exists = false)
     {
-        $this->user_id = $data['user_id'];
+        $this->user_id = $data['user']->get_id();
         $this->content = $data['content'];
         if (isset($data['created_at'])) {
             $this->created_at = $data['created_at'];

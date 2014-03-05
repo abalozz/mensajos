@@ -30,5 +30,8 @@
     <div id="wrap">
         <?php echo $child ?>
     </div>
+
+    <script src="js/utils.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

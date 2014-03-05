@@ -25,10 +25,8 @@
 </header>
 
 <div id="send-mensajo-box">
-    <form action="?page=messages&amp;action=store" method="post">
-        <textarea name="mensajo" cols="30" rows="10" placeholder="Envía un nuevo mensajo"></textarea>
-        <button>Enviar</button>
-    </form>
+    <textarea id="content-message" name="message" cols="30" rows="10" placeholder="Envía un nuevo mensajo"></textarea>
+    <button id="send-message">Enviar</button>
 </div>
 
 <section id="messages">

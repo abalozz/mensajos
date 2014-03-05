@@ -58,4 +58,13 @@ class TestController extends Controller {
         return '';
     }
 
+    public function ajax()
+    {
+        $var1 = 'val1';
+        $var2 = 'val2';
+        $respuesta = 'valor';
+
+        return json_encode(compact('var1', 'var2', 'respuesta'));
+    }
+
 }
