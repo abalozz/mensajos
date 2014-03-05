@@ -1,4 +1,4 @@
-{{ extends 'layouts/private' }}
+@extends 'layouts/private'
 
 <div>
     Nombre de usuario: <?php echo $user->get_username() ?>

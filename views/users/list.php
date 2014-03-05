@@ -1,4 +1,4 @@
-{{ extends 'layouts/private' }}
+@extends 'layouts/private'
 
 <ul>
     <?php foreach ($users as $user): ?>

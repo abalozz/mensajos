@@ -40,8 +40,8 @@ class View {
     private function extend_view($html)
     {
         // Patrón que busca la etiqueta que indica si una plantilla extiende de otra.
-        // Ejemplo: {{ extends 'nombre_plantilla' }}
-        $pattern = '/{{\s*extends\s+[\'"]{1}(?<view>[A-Za-z0-9-_\/]+)[\'"]{1}\s*}}/m';
+        // Ejemplo: @extends 'nombre_plantilla' o @extends('nombre_plantilla')
+        $pattern = '/@extends\s*\(?\s*[\'"]{1}(?<view>[A-Za-z0-9-_\/]+)[\'"]{1}\s*\)?/m';
 
         if (preg_match($pattern, $html, $matches)) {
             // Elimina el código de la etiqueta para que no se muestre en el HTML final.

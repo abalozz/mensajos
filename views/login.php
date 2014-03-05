@@ -1,4 +1,4 @@
-{{ extends 'layouts/public' }}
+@extends 'layouts/public'
 
 <header>
     <h1>Mensajos</h1>

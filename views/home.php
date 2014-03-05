@@ -1,4 +1,4 @@
-{{ extends 'layouts/private' }}
+@extends 'layouts/private'
 
 <header>
     <div id="user-media">
