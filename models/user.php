@@ -4,12 +4,14 @@ class User extends Model {
 
     static $table = 'users';
 
+    static $max_id_of_default_images = 7;
+
     private $username;
     private $email;
     private $password;
     private $name;
-    private $profile_image = 'img/profile-image-default.jpg';
-    private $header_image = 'img/header-image-default.jpg';
+    private $profile_image;
+    private $header_image;
 
     private $number_of_messages = 0;
 
@@ -36,9 +38,13 @@ class User extends Model {
         }
         if (isset($data['profile_image'])) {
             $this->profile_image = $data['profile_image'];
+        } else {
+            $this->profile_image = 'img/default-profile-images/' . mt_rand(0, self::$max_id_of_default_images) . '.png';
         }
         if (isset($data['header_image'])) {
             $this->header_image = $data['header_image'];
+        } else {
+            $this->header_image = 'img/default-header-images/' . mt_rand(0, self::$max_id_of_default_images) . '.png';
         }
 
         if ($exists) {
@@ -165,8 +171,9 @@ class User extends Model {
                 $this->username, $this->email, $this->password, $this->name, $this->profile_image, $this->header_image, $this->id
                 ]);
         } else {
-            DB::query('INSERT INTO ' . self::$table . ' (id, username, email, password, name) VALUES (null, ?, ?, ?, ?);', [
-                $this->username, $this->email, $this->password, $this->name
+            DB::query('INSERT INTO ' . self::$table . ' (id, username, email, password, name, profile_image, header_image)
+                    VALUES (null, ?, ?, ?, ?, ?, ?);', [
+                $this->username, $this->email, $this->password, $this->name, $this->profile_image, $this->header_image
                 ]);
         }
 

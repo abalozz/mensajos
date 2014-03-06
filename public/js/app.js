@@ -2,6 +2,7 @@
 
 function sendMessage (e) {
     var content = document.getElementById('content-message');
+    this.disabled = true;
     
     if (content.value) {
         ajax({
@@ -12,6 +13,7 @@ function sendMessage (e) {
             },
         }, function (data) {
             content.value = '';
+            this.disabled = false;
         }, function () {
             // error
         });
