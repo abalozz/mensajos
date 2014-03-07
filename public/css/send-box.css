@@ -19,9 +19,7 @@
 }
 
 #send-mensajo-box textarea {
-    border-color: #0074d9;
-    border-style: solid;
-    border-width: 0 1px;
+    border: none;
     border-radius: 0;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;

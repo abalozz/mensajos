@@ -40,8 +40,14 @@
 
 
 #user-stats {
+    background: #fff;
     border-bottom: 1px solid #aaa;
     border-top: 2px solid #333;
+    font-size: 1.2em
+}
+
+#user-stats a {
+    text-decoration: none;
 }
 
 #user-stats .count, #user-stats .text {
@@ -67,6 +73,10 @@
 
     #user-media .user-profile-img {
         width: 128px;
+    }
+
+    #user-stats .text {
+        font-size: 1.2em;
     }
 }
 
@@ -95,12 +105,12 @@
     #user-stats {
         border: none;
         float: right;
+        font-size: 1.4em;
         width: 170px;
     }
 
     #user-stats .stat {
         display: block;
-        font-size: 1.6em;
         height: 86px;
         width: 100%;
     }
