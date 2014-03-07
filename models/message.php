@@ -17,13 +17,19 @@ class Message extends Model {
 
     public function __construct($data, $exists = false)
     {
-        $this->user_id = $data['user']->get_id();
+        if ($data['user'] instanceof User) {
+            $this->user_id = $data['user']->get_id();
+            $this->user = $data['user'];
+        } else {
+            $this->user_id = $data['user_id'];
+            $this->user = User::where(['id' => $data['user_id']], 1);
+        }
+
         $this->content = $data['content'];
         if (isset($data['created_at'])) {
             $this->created_at = $data['created_at'];
         }
 
-        $this->user = $data['user'];
 
         parent::__construct($data, $exists);
     }
