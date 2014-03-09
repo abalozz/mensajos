@@ -7,8 +7,12 @@ a:hover {
 }
 
 body {
-    background: #bbb;
+    background: #ccc;
     font-family: 'Open Sans', sans-serif;
+}
+
+body, html, #wrap {
+    height: 100%;
 }
 
 h2 {
@@ -16,15 +20,12 @@ h2 {
     text-align: center;
 }
 
-@media screen and (min-width: 520px) {
-    #wrap {
-        margin: auto;
-        width: 520px;
-    }
+#user-display {
+    max-width: 520px;
 }
 
-@media screen and (min-width: 700px) {
-    #wrap {
-        width: 696px;
-    }
+#wrap {
+    width: 100%;
 }
+
+

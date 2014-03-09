@@ -1,7 +1,12 @@
+#send-mensajo-box {
+    font-size: 1.2em;
+}
+
 #send-mensajo-box button {
     background: #0074d9;
     border: none;
     border-radius: 0;
+    box-shadow: 0 1px 0px 0 #999999, 0 0px 1px 0px #999999;
     color: #ddd;
     display: block;
     height: 1.5em;
@@ -35,6 +40,6 @@
 }
 
 #send-mensajo-box textarea:focus {
-    background-color: #ffe5ce;
+    background-color: #F2F5A9;
     height: 6em;
 }

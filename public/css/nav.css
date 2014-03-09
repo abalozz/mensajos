@@ -18,7 +18,8 @@ nav a:hover {
 
 .max-nav-width {
     margin: auto;
-    max-width: 690px;
+    max-width: 1180px;
+    padding: 0 1em;
 }
 
 @media screen and (min-width: 420px) {

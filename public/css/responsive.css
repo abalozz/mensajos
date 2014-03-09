@@ -1,0 +1,78 @@
+@media screen and (min-width: 420px) {
+    #user-media .name {
+        padding: 0 0 0.2em 134px;
+    }
+
+    #user-media .user-profile-img {
+        width: 128px;
+    }
+
+    #user-stats .text {
+        font-size: 1.2em;
+    }
+}
+
+@media screen and (min-width: 520px) {
+    #wrap {
+        margin: auto;
+        max-width: 520px;
+    }
+
+    .message {
+        border: none;
+        border-radius: 0.1em;
+        font-size: 1.2em;
+        margin-bottom: 0.3em;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    body {
+        overflow: hidden;
+    }
+
+    nav {
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    #messages {
+        float: right;
+        overflow-y: scroll;
+        height: 100%;
+        margin: 0;
+    }
+
+    #messages, #user-display {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 50%;
+        padding: 0 0.25em;
+    }
+
+    #user-display {
+        float: left;
+    }
+
+    #wrap {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        max-width: 1200px;
+        padding-top: 2.5em;
+    }
+}
+
+@media screen and (min-width: 1040px) {
+    #messages {
+        margin-left: 520px;
+        width: auto;
+        float: none;
+    }
+
+    #user-display {
+        position: absolute;
+    }
+}
