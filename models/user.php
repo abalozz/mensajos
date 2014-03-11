@@ -132,22 +132,12 @@ class User extends Model {
 
     public function follow($user)
     {
-        if ($this->id != $user->get_id()) {
-            $this->new_follows[] = $user;
-        }
-    }
-
-    public function unfollow($user)
-    {
-        $this->new_unfollows[] = $user;
-    }
-
-    public function toggle_follow($user)
-    {
         if ($this->is_following_to($user)) {
-            $this->unfollow($user);
+            $this->new_unfollows[] = $user;
         } else {
-            $this->follow($user);
+            if ($this->id != $user->get_id()) {
+                $this->new_follows[] = $user;
+            }$this->follow($user);
         }
     }
 

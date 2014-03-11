@@ -28,7 +28,7 @@ class UsersController extends Controller {
     {
         if (Auth::user()->get_id() != $_GET['id']) {
             $user = User::findOne(['id' => $_GET['id']]);
-            Auth::user()->toggle_follow($user);
+            Auth::user()->follow($user);
             Auth::user()->save();
         }
 
