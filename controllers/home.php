@@ -7,7 +7,7 @@ class HomeController extends Controller {
         if (Auth::check()) {
             $messages = Auth::user()->timeline();
 
-            $view = View::make('home');
+            $view = View::make('users/detail');
             $view->with('mensajos', 'Mensajos');
             $view->with('messages', $messages);
             $view->with('user', Auth::user());

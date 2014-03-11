@@ -35,6 +35,11 @@
                 <?php endif; ?>
             </a>
         </div>
+    <?php else: ?>
+        <div id="send-mensajo-box">
+            <textarea id="content-message" name="message" cols="30" rows="10" placeholder="Envía un nuevo mensajo"></textarea>
+            <button id="send-message" class="btn">Enviar</button>
+        </div>
     <?php endif; ?>
 </div>
 
@@ -71,6 +76,8 @@
             </article>
         <?php endforeach; ?>
     <?php else: ?>
-        No tienes mensajes que ver :(
+        <article class="message">
+            <p>No tienes mensajes que ver :(</p>
+        </article>
     <?php endif; ?>
 </section>
