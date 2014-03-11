@@ -137,7 +137,7 @@ class User extends Model {
         } else {
             if ($this->id != $user->get_id()) {
                 $this->new_follows[] = $user;
-            }$this->follow($user);
+            }
         }
     }
 
@@ -216,7 +216,7 @@ class User extends Model {
         parent::save();
 
         // Contraseña
-        if (isset($this->password) && $this->password && !$this->is_password_crypted) {
+        if ($this->password != null && !$this->is_password_crypted) {
             $this->password = encrypt($this->password);
             $this->is_password_crypted = true;
 
