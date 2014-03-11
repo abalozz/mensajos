@@ -34,7 +34,7 @@
 <section id="messages">
     <?php if (count($messages)): ?>
         <?php foreach ($messages as $message): ?>
-            <article class="message">
+            <article class="message" id="message-id-<?php echo $message->get_id() ?>">
                 <figure class="profile-img">
                     <img src="<?php echo $message->get_user()->get_profile_image() ?>"
                         alt="<?php echo $message->get_user()->get_name() ?>">
@@ -55,6 +55,9 @@
                                     Reenviar
                                 <?php endif; ?>
                             </a>
+                        <?php endif; ?>
+                        <?php if ($message->is_from(Auth::user())): ?>
+                            <a href="#" data-message-id="<?php echo $message->get_id() ?>" class="delete-message">Eliminar</a>
                         <?php endif; ?>
                     </menu>
                 </div>

@@ -56,6 +56,13 @@ class Model {
         }
     }
 
+    public function delete()
+    {
+        if ($this->exists) {
+            DB::query('DELETE FROM ' . static::$table . ' WHERE id = ?', [$this->id]);
+        }
+    }
+
 
     // Métodos estáticos
 

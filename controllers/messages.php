@@ -22,4 +22,12 @@ class MessagesController extends Controller {
         header('Location:./');
     }
 
+    public function delete()
+    {
+        $message = Message::where(['id' => $_GET['id']], 1);
+        if ($message->is_from(Auth::user())) {
+            $message->delete();
+        }
+    }
+
 }

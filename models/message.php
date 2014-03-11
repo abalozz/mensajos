@@ -17,7 +17,7 @@ class Message extends Model {
 
     public function __construct($data, $exists = false)
     {
-        if ($data['user'] instanceof User) {
+        if (isset($data['user']) && $data['user'] instanceof User) {
             $this->user_id = $data['user']->get_id();
             $this->user = $data['user'];
         } else {
@@ -29,7 +29,6 @@ class Message extends Model {
         if (isset($data['created_at'])) {
             $this->created_at = $data['created_at'];
         }
-
 
         parent::__construct($data, $exists);
     }
@@ -112,6 +111,14 @@ class Message extends Model {
             DB::query('INSERT INTO timeline (id, user_id, message_id, type) VALUES (null, ?, ?, ?)', [$this->user_id, $this->id, 0]);
 
             $this->exists = true;
+        }
+    }
+
+    public function delete()
+    {
+        if ($this->exists) {
+            DB::query('DELETE FROM timeline WHERE message_id = ?', [$this->id]);
+            parent::delete();
         }
     }
 
