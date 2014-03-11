@@ -53,13 +53,13 @@ class User extends Model {
         }
 
         if ($exists) {
-            $followings = DB::query('SELECT u.id, u.username, u.email FROM users u, follows f WHERE f.user_id = ? AND u.id = f.followed_id', [$this->id]);
+            $followings = DB::query('SELECT u.id, u.username, u.email, u.name, u.profile_image, u.header_image FROM users u, follows f WHERE f.user_id = ? AND u.id = f.followed_id', [$this->id]);
             $this->number_of_followings = count($followings);
             foreach ($followings as $follow) {
                 $this->followings[] = new User($follow);
             }
 
-            $followers = DB::query('SELECT u.id, u.username, u.email FROM users u, follows f WHERE f.followed_id = ? AND u.id = f.user_id', [$this->id]);
+            $followers = DB::query('SELECT u.id, u.username, u.email, u.name, u.profile_image, u.header_image FROM users u, follows f WHERE f.followed_id = ? AND u.id = f.user_id', [$this->id]);
             $this->number_of_followers = count($followers);
             foreach ($followers as $follower) {
                 $this->followers[] = new User($follower);
