@@ -160,6 +160,37 @@ class User extends Model {
         return false;
     }
 
+    public function timeline()
+    {
+        $messages = DB::query('SELECT u.username, u.email, u.name, u.profile_image, m.id message_id, m.user_id, m.content, m.created_at
+            FROM follows f, timeline t, messages m, users u
+            WHERE ((f.user_id = ? AND f.followed_id = t.user_id) OR t.user_id = ?)
+            AND t.message_id = m.id
+            AND m.user_id = u.id
+            GROUP BY m.id
+            ORDER BY t.id DESC', [$this->id, $this->id]);
+
+        foreach ($messages as $k => $v) {
+            $user = [
+                'id' => $v['user_id'],
+                'username' => $v['username'],
+                'email' => $v['email'],
+                'name' => $v['name'],
+                'profile_image' => $v['profile_image'],
+            ];
+            $message = [
+                'id' => $v['message_id'],
+                'user_id' => $v['user_id'],
+                'content' => $v['content'],
+                'created_at' => $v['created_at'],
+                'user' => new User($user),
+            ];
+            $messages[$k] = new Message($message);
+        }
+
+        return $messages;
+    }
+
     public function is_valid()
     {
         if ($this->username &&

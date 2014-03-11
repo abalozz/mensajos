@@ -5,7 +5,7 @@ class HomeController extends Controller {
     public function index()
     {
         if (Auth::check()) {
-            $messages = Message::timeline(Auth::user()->get_id());
+            $messages = Auth::user()->timeline();
 
             $view = View::make('home');
             $view->with('mensajos', 'Mensajos');
