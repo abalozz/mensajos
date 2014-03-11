@@ -8,6 +8,7 @@ class UsersController extends Controller {
     {
         $users = User::all();
 
+        View::add_locals('title', 'Mensajos - Lista de usuarios');
         $view = View::make('users/list');
         $view->with('users', $users);
         return $view;
@@ -18,6 +19,7 @@ class UsersController extends Controller {
         $user = User::findOne(['id' => $_GET['id']]);
         $messages = $user->timeline();
 
+        View::add_locals('title', 'Mensajos - Perfil de ' . $user->get_name());
         $view = View::make('users/detail');
         $view->with('user', $user);
         $view->with('messages', $messages);
@@ -40,6 +42,7 @@ class UsersController extends Controller {
         $user = User::findOne(['id' => $_GET['id']]);
         $followers = $user->get_followers();
 
+        View::add_locals('title', 'Mensajos - Seguidores de ' . $user->get_name());
         $view = View::make('users/list');
         $view->with('users', $followers);
         return $view;
@@ -50,6 +53,7 @@ class UsersController extends Controller {
         $user = User::findOne(['id' => $_GET['id']]);
         $followings = $user->get_followings();
 
+        View::add_locals('title', 'Mensajos - Siguiendo a ' . $user->get_name());
         $view = View::make('users/list');
         $view->with('users', $followings);
         return $view;

@@ -11,6 +11,7 @@ class HomeController extends Controller {
             $view->with('mensajos', 'Mensajos');
             $view->with('messages', $messages);
             $view->with('user', Auth::user());
+            View::add_locals('title', 'Mensajos - Perfil de ' . Auth::user()->get_name());
         } else {
             $view = View::make('login');
         }
@@ -44,6 +45,7 @@ class HomeController extends Controller {
         if (Auth::check()) {
             header('Location:./');
         } else {
+            View::add_locals('title', 'Registro en Mensajos');
             $view = View::make('reg');
             return $view;
         }
