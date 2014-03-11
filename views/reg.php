@@ -8,15 +8,15 @@
     <form action="?page=home&amp;action=store" method="POST">
         <div class="form_input">
             <label for="username">Nombre de usuario:</label>
-            <input type="text" id="username" name="username" value="<?php echo (isset($username)) ? $username : null; ?>" >
+            <input type="text" id="username" name="username" value="<?php echo (isset($username)) ? $username : null; ?>" required>
         </div>
         <div class="form_input">
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="<?php echo (isset($email)) ? $email : null; ?>" >
+            <input type="email" id="email" name="email" value="<?php echo (isset($email)) ? $email : null; ?>" required>
         </div>
         <div class="form_input">
             <label for="password">Contraseña:</label>
-            <input type="password" id="password" name="password" >
+            <input type="password" id="password" name="password" required>
         </div>
         <div class="form_button">
             <button>Registrarse</button>
