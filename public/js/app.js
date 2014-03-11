@@ -3,9 +3,11 @@
 // Envía un mensaje
 function sendMessage (e) {
     var content = document.getElementById('content-message');
-    this.disabled = true;
-    
+
     if (content.value) {
+        this.disabled = true;
+        var self = this;
+        
         ajax({
             method: 'post',
             url: '?page=messages&action=store',
@@ -14,9 +16,31 @@ function sendMessage (e) {
             },
         }, function (data) {
             content.value = '';
-            this.disabled = false;
+            self.disabled = false;
+
+            var message =
+                '<article class="message" id="message-id-' + data.id + '"> \
+                    <figure class="profile-img"> \
+                        <img src="' + data.user.profile_image + '" \
+                            alt="' + data.user.name + '"> \
+                    </figure> \
+                    <div class="content"> \
+                        <a href="?page=users&amp;action=show&amp;id=' + data.user_id + '"> \
+                            ' + data.user.name + ' (' + data.user.username + ') \
+                        </a> \
+                        <p> \
+                            ' + data.content + ' \
+                        </p> \
+                        <menu class="actions"> \
+                            <a href="#" data-message-id="' + data.id + '" class="delete-message">Eliminar</a> \
+                        </menu> \
+                    </div> \
+                </article>';
+            var messages = document.getElementById('messages');
+            messages.innerHTML = message + messages.innerHTML;
+            assignLinkMessagesEvent();
         }, function () {
-            // error
+            self.disabled = false;
         });
     }
 }
@@ -45,8 +69,12 @@ function deleteMessage (e) {
 // Asignar eventos
 document.getElementById('send-message').addEventListener('click', sendMessage, false);
 
-var deleteLinkMessages = document.getElementsByClassName('delete-message');
-for (var i = deleteLinkMessages.length - 1; i >= 0; i--) {
-    deleteLinkMessages[i].addEventListener('click', deleteMessage, false);
-};
+function assignLinkMessagesEvent() {
+    var deleteLinkMessages = document.getElementsByClassName('delete-message');
+    for (var i = deleteLinkMessages.length - 1; i >= 0; i--) {
+        deleteLinkMessages[i].addEventListener('click', deleteMessage, false);
+    };
+}
+assignLinkMessagesEvent();
+
 

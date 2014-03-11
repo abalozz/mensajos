@@ -122,6 +122,17 @@ class Message extends Model {
         }
     }
 
+    public function to_array()
+    {
+        return [
+            'id' => $this->id,
+            'user_id' => $this->user_id,
+            'content' => $this->content,
+            'created_at' => $this->created_at,
+            'user' => $this->user->to_array(),
+        ];
+    }
+
 
     static function timeline($user_id)
     {

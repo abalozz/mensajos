@@ -67,4 +67,10 @@ class TestController extends Controller {
         return json_encode(compact('var1', 'var2', 'respuesta'));
     }
 
+    public function json()
+    {
+        $user = User::findOne(['id' => 1]);
+        return $user->to_json();
+    }
+
 }

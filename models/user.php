@@ -216,4 +216,19 @@ class User extends Model {
         parent::save();
     }
 
+    public function to_array()
+    {
+        return [
+            'id' => $this->id,
+            'username' => $this->username,
+            'email' => $this->email,
+            'name' => $this->name,
+            'profile_image' => $this->profile_image,
+            'header_image' => $this->header_image,
+            'number_of_messages' => $this->number_of_messages,
+            'number_of_followers' => $this->number_of_followers,
+            'number_of_followings' => $this->number_of_followings,
+        ];
+    }
+
 }

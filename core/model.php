@@ -56,11 +56,30 @@ class Model {
         }
     }
 
+    /**
+     * Elimina el modelo de la base de datos.
+     */
     public function delete()
     {
         if ($this->exists) {
             DB::query('DELETE FROM ' . static::$table . ' WHERE id = ?', [$this->id]);
         }
+    }
+
+    /**
+     * Transforma el modelo en un Array.
+     */
+    public function to_array()
+    {
+        return ['id' => $this->id];
+    }
+
+    /**
+     * Transforma el modelo a formato JSON.
+     */
+    public function to_json()
+    {
+        return json_encode($this->to_array());
     }
 
 

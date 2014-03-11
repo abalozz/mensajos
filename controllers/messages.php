@@ -11,7 +11,7 @@ class MessagesController extends Controller {
             'content' => $_POST['content'],
             ]);
 
-        return '';
+        return $message->to_json();
     }
 
     public function forward()
