@@ -32,7 +32,7 @@ class UsersController extends Controller {
             Auth::user()->save();
         }
 
-        header('Location:?page=users&action=show&id=' . $_GET['id']);
+        header('Location:./');
     }
 
     public function followers()
