@@ -134,9 +134,25 @@ class Model {
         }
     }
 
+    /**
+     * Obtiene todos los modelos.
+     * 
+     * @return array Un array con todos los modelos.
+     */
     static function all()
     {
         return self::where();
+    }
+
+    /**
+     * Busca tan solo un elemento en la base de datos.
+     * 
+     * @param array $where Los atributos de la condición where. El array debe ser de clave - valor.
+     * @return Model El modelo encontrado.
+     */
+    static function findOne($where = [])
+    {
+        return self::where($where, 1);
     }
 
     /**

@@ -16,7 +16,7 @@ class MessagesController extends Controller {
 
     public function forward()
     {
-        $message = Message::where(['id' => $_GET['id']], 1);
+        $message = Message::findOne(['id' => $_GET['id']]);
         $message->forward(Auth::user());
 
         header('Location:./');
@@ -24,7 +24,7 @@ class MessagesController extends Controller {
 
     public function delete()
     {
-        $message = Message::where(['id' => $_GET['id']], 1);
+        $message = Message::findOne(['id' => $_GET['id']]);
         if ($message->is_from(Auth::user())) {
             $message->delete();
         }

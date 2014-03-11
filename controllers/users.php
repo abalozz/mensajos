@@ -15,7 +15,7 @@ class UsersController extends Controller {
 
     public function show()
     {
-        $user = User::where(['id' => $_GET['id']], 1);
+        $user = User::findOne(['id' => $_GET['id']]);
 
         $view = View::make('users/detail');
         $view->with('user', $user);
@@ -25,7 +25,7 @@ class UsersController extends Controller {
     public function follow()
     {
         if (Auth::user()->get_id() != $_GET['id']) {
-            $user = User::where(['id' => $_GET['id']], 1);
+            $user = User::findOne(['id' => $_GET['id']]);
             Auth::user()->toggle_follow($user);
             Auth::user()->save();
         }
@@ -35,7 +35,7 @@ class UsersController extends Controller {
 
     public function followers()
     {
-        $user = User::where(['id' => $_GET['id']], 1);
+        $user = User::findOne(['id' => $_GET['id']]);
         $followers = $user->get_followers();
 
         $view = View::make('users/list');
@@ -45,7 +45,7 @@ class UsersController extends Controller {
 
     public function followings()
     {
-        $user = User::where(['id' => $_GET['id']], 1);
+        $user = User::findOne(['id' => $_GET['id']]);
         $followings = $user->get_followings();
 
         $view = View::make('users/list');
