@@ -1,9 +1,11 @@
 a {
     color: #0074d9;
+    text-decoration: none;
 }
 
 a:hover {
-    color: #32A0FF;
+    color: #2290eF;
+    text-decoration: underline;
 }
 
 body {

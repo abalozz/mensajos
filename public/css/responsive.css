@@ -13,15 +13,22 @@
 }
 
 @media screen and (min-width: 520px) {
+    #users-list {
+        margin-top: 0.3em;
+    }
+
     #wrap {
         margin: auto;
         max-width: 520px;
     }
 
     .message {
+        font-size: 1.2em;
+    }
+
+    .message, .user {
         border: none;
         border-radius: 0.1em;
-        font-size: 1.2em;
         margin-bottom: 0.3em;
     }
 }
@@ -54,6 +61,18 @@
 
     #user-display {
         float: left;
+    }
+
+    #users-list {
+        margin-top: 0;
+        text-align: center;
+    }
+
+    #users-list .user {
+        display: inline-block;
+        text-align: left;
+        vertical-align: top;
+        width: 350px;
     }
 
     #wrap {
