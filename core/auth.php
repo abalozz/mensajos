@@ -54,7 +54,6 @@ class Auth {
      */
     static function create($user_data)
     {
-        $user_data['password'] = encrypt($user_data['password']);
         $user = User::create($user_data);
 
         return $user;

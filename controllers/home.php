@@ -39,4 +39,38 @@ class HomeController extends Controller {
         header('Location:./');
     }
 
+    public function reg()
+    {
+        if (Auth::check()) {
+            header('Location:./');
+        } else {
+            $view = View::make('reg');
+            return $view;
+        }
+    }
+
+    public function store() {
+        if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])) {
+            $user = Auth::create([
+                'username' => $_POST['username'],
+                'email' => $_POST['email'],
+                'password' => $_POST['password'],
+                ]);
+
+            if ($user instanceof User && Auth::login($_POST['email'], $_POST['password'])) {
+                die(header('Location:index.php'));
+            }
+        }
+
+        $view = View::make('reg');
+        $view->with('errors', 'Los datos introducidos son erróneos. La contraseña debe tener al menos 6 caracteres.');
+        if (isset($_POST['username'])) {
+            $view->with('username', $_POST['username']);
+        }
+        if (isset($_POST['email'])) {
+            $view->with('email', $_POST['email']);
+        }
+        return $view;
+    }
+
 }

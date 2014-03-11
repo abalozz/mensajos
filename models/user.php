@@ -22,6 +22,8 @@ class User extends Model {
     private $new_follows = [];
     private $new_unfollows = [];
 
+    private $is_password_crypted = false;
+
     public function __construct($data, $exists = false)
     {
         parent::__construct($data, $exists);
@@ -30,6 +32,9 @@ class User extends Model {
         $this->email = $data['email'];
         if (isset($data['password'])) {
             $this->password = $data['password'];
+            if ($exists) {
+                $is_password_crypted = true;
+            }
         }
         if (isset($data['name'])) {
             $this->name = $data['name'];
@@ -157,7 +162,14 @@ class User extends Model {
 
     public function is_valid()
     {
-        if ($this->username && $this->password && $this->email) {
+        if ($this->username &&
+            filter_var($this->username, FILTER_SANITIZE_STRING) == $this->username &&
+            strlen($this->password) >= 6 &&
+            filter_var($this->email, FILTER_VALIDATE_EMAIL)
+        ) {
+            if (User::findOne(['username' => $this->username]) || User::findOne(['email' => $this->email])) {
+                return false;
+            }
             return true;
         }
         return false;
@@ -167,13 +179,27 @@ class User extends Model {
     {
         if ($this->exists) {
             DB::query('UPDATE ' . self::$table . ' SET username = ?, email = ?,
-                password = ?, name = ?, profile_image = ?, header_image = ? WHERE id = ?;', [
-                $this->username, $this->email, $this->password, $this->name, $this->profile_image, $this->header_image, $this->id
+                name = ?, profile_image = ?, header_image = ? WHERE id = ?;', [
+                $this->username, $this->email, $this->name, $this->profile_image, $this->header_image, $this->id
                 ]);
         } else {
-            DB::query('INSERT INTO ' . self::$table . ' (id, username, email, password, name, profile_image, header_image)
-                    VALUES (null, ?, ?, ?, ?, ?, ?);', [
-                $this->username, $this->email, $this->password, $this->name, $this->profile_image, $this->header_image
+           $a = DB::query('INSERT INTO ' . self::$table . ' (id, username, email, password, name, profile_image, header_image)
+                    VALUES (null, ?, ?, "", ?, ?, ?);', [
+                $this->username, $this->email, $this->name, $this->profile_image, $this->header_image
+                ]);
+           // var_dump($a);
+           //  die;
+        }
+
+        parent::save();
+
+        // Contraseña
+        if (isset($this->password) && $this->password && !$this->is_password_crypted) {
+            $this->password = encrypt($this->password);
+            $this->is_password_crypted = true;
+
+            DB::query('UPDATE ' . self::$table . ' SET password = ? WHERE id = ?;', [
+                $this->password, $this->id
                 ]);
         }
 
@@ -212,8 +238,6 @@ class User extends Model {
             }
             $this->new_unfollows = [];
         }
-
-        parent::save();
     }
 
     public function to_array()

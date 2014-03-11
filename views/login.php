@@ -4,7 +4,7 @@
     <h1>Mensajos</h1>
 </header>
 
-<section id="login">
+<section id="form">
     <form action="?page=home&amp;action=login" method="POST">
         <div class="form_input">
             <label for="identity">Nombre de usuario o email:</label>
@@ -22,6 +22,7 @@
                 <?php echo $errors ?>
             </p>
         <?php endif; ?>
+        <p id="reg">¿No tienes una cuenta? <a href="?action=reg">¡Regístrate!</a></p>
     </form>
 </section>
 

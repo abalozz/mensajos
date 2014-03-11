@@ -1,16 +1,17 @@
 body {
-    font-size: 20px;
+    font-size: 1.3em;
 }
 
 header {
     text-align: center;
 }
 
-#errors {
+#errors, #reg {
     margin-bottom: 0;
+    font-size: 0.8em;
 }
 
-#login {
+#form {
     border: 1px solid #aaa;
     margin: auto;
     padding: 1em;
@@ -51,4 +52,14 @@ header {
 .form_input label {
     display: inline-block;
     margin-bottom: 0.2em;
+}
+
+@media screen and (max-width: 400px) {
+    #form {
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 100%;
+    }
 }
