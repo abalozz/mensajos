@@ -16,9 +16,11 @@ class UsersController extends Controller {
     public function show()
     {
         $user = User::findOne(['id' => $_GET['id']]);
+        $messages = $user->timeline();
 
         $view = View::make('users/detail');
         $view->with('user', $user);
+        $view->with('messages', $messages);
         return $view;
     }
 

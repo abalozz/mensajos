@@ -27,7 +27,7 @@
 
     <div id="send-mensajo-box">
         <textarea id="content-message" name="message" cols="30" rows="10" placeholder="Envía un nuevo mensajo"></textarea>
-        <button id="send-message">Enviar</button>
+        <button id="send-message" class="btn">Enviar</button>
     </div>
 </div>
 

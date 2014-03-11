@@ -20,7 +20,7 @@
     <nav>
         <div class="max-nav-width">
             <a href="./">Inicio</a>
-            <a href="?page=profile">Perfil</a>
+            <a href="?page=users&amp;action=show&amp;id=<?php echo Auth::user()->get_id() ?>">Perfil</a>
             <div class="nav-right">
                 <a href="?page=settings">Ajustes</a>
                 <a href="?page=home&amp;action=logout">Cerrar sesión</a>
