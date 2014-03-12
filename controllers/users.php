@@ -32,9 +32,10 @@ class UsersController extends Controller {
             $user = User::findOne(['id' => $_GET['id']]);
             Auth::user()->follow($user);
             Auth::user()->save();
+            return json_encode(true);
         }
+        return json_encode(false);
 
-        header('Location:./');
     }
 
     public function followers()

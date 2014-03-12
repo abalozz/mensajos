@@ -66,8 +66,32 @@ function deleteMessage (e) {
     });
 }
 
+// Sigue o deja de seguir a un usuario.
+function followUser (e) {
+    var self = this;
+    ajax({
+        method: 'post',
+        url: '?page=users&action=follow&id=' + self.getAttribute('data-user-id'),
+        data: {
+            content: content.value,
+        },
+    }, function (data) {
+        if (data) {
+            if (self.getAttribute('data-following') == 0) {
+                self.setAttribute('data-following', 1);
+                self.textContent = 'Dejar de seguir';
+            } else {
+                self.setAttribute('data-following', 0);
+                self.textContent = 'Seguir';
+            }
+        }
+    }, function () {});
+}
+
 // Asignar eventos
-document.getElementById('send-message').addEventListener('click', sendMessage, false);
+if (document.getElementById('send-message')) {
+    document.getElementById('send-message').addEventListener('click', sendMessage, false);
+}
 
 function assignLinkMessagesEvent() {
     var deleteLinkMessages = document.getElementsByClassName('delete-message');
@@ -76,5 +100,13 @@ function assignLinkMessagesEvent() {
     };
 }
 assignLinkMessagesEvent();
+
+function followLinkEvent() {
+    var followLink = document.getElementsByClassName('follow');
+    for (var i = followLink.length - 1; i >= 0; i--) {
+        followLink[i].addEventListener('click', followUser, false);
+    };
+}
+followLinkEvent();
 
 
