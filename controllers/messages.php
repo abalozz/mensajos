@@ -8,7 +8,7 @@ class MessagesController extends Controller {
     {
         $message = Message::create([
             'user' => Auth::user(),
-            'content' => $_POST['content'],
+            'content' => filter_var($_POST['content'], FILTER_SANITIZE_FULL_SPECIAL_CHARS),
             ]);
 
         return $message->to_json();

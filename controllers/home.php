@@ -53,6 +53,7 @@ class HomeController extends Controller {
 
     public function store() {
         if (isset($_POST['username']) && isset($_POST['email']) && isset($_POST['password'])) {
+            $_POST['username'] = filter_var($_POST['username'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
             $user = Auth::create([
                 'username' => $_POST['username'],
                 'email' => $_POST['email'],

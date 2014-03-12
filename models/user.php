@@ -185,7 +185,7 @@ class User extends Model {
     public function is_valid()
     {
         if ($this->username &&
-            filter_var($this->username, FILTER_SANITIZE_STRING) == $this->username &&
+            strlen($this->username) > 0 &&
             strlen($this->password) >= 6 &&
             filter_var($this->email, FILTER_VALIDATE_EMAIL)
         ) {
