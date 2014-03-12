@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="css/header-user.css">
     <link rel="stylesheet" href="css/send-box.css">
     <link rel="stylesheet" href="css/messages.css">
+    <link rel="stylesheet" href="css/search.css">
     <link rel="stylesheet" href="css/users-list.css">
     <link rel="stylesheet" href="css/responsive.css">
 </head>

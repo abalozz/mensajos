@@ -197,6 +197,18 @@ class User extends Model {
         return false;
     }
 
+    public function search($value)
+    {
+        $value = sprintf('%%%s%%', $value);
+        $users = DB::query('SELECT * FROM ' . self::$table . ' WHERE username LIKE "%' . $value . '%" OR name LIKE "%' . $value . '%"');
+
+        foreach ($users as $key => $user) {
+            $users[$key] = new User($user);
+        }
+
+        return $users;
+    }
+
     public function save()
     {
         if ($this->exists) {
