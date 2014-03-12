@@ -8,7 +8,8 @@
     <form action="?page=home&amp;action=store" method="POST">
         <div class="form_input">
             <label for="username">Nombre de usuario:</label>
-            <input type="text" id="username" name="username" value="<?php echo (isset($username)) ? $username : null; ?>" required>
+            <input type="text" id="username" name="username" value="<?php echo (isset($username)) ? $username : null; ?>"
+                required autofocus>
         </div>
         <div class="form_input">
             <label for="email">Email:</label>

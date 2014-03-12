@@ -8,7 +8,8 @@
     <form action="?page=home&amp;action=login" method="POST">
         <div class="form_input">
             <label for="identity">Nombre de usuario o email:</label>
-            <input type="text" id="identity" name="identity" value="<?php echo (isset($identity)) ? $identity : null; ?>" required>
+            <input type="text" id="identity" name="identity" value="<?php echo (isset($identity)) ? $identity : null; ?>"
+                required autofocus>
         </div>
         <div class="form_input">
             <label for="password">Contraseña:</label>
